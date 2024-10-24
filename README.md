@@ -1,8 +1,10 @@
-# sip-parser
+# @fabrykowski/sip-parser
 A simple npm package for parsing and stringifying SIP messages.
 
+This is a fork of [sip-parser](https://github.com/Formup/sip-parser) with some bugfixes.
+
 # Install
-`npm install sip-parser`
+`npm install @fabrykowski/sip-parser`
 
 # Features
 * Parse raw SIP messages into JavaScript objects.
@@ -16,7 +18,7 @@ A simple npm package for parsing and stringifying SIP messages.
 ### parse()
 Use the `parse(message)` function to parse a raw SIP message into a JavaScript object.
 ```JavaScript
-import { parse } from 'sip-parser';
+import { parse } from '@fabrykowski/sip-parser';
 
 // In a real use case, maybe you get this from a TCP socket.
 const messageString =
@@ -94,7 +96,7 @@ This will print:
 Essentially, `stringify(messageObject)` is an inverse opration of `parse`. In the following example, we first parse a message and then stringify it back to SIP format. In your application, you most likely want to manipulate the message a bit more or create it from scratch in your application logic.
 
 ```JavaScript
-import { parse, stringify } from 'sip-parser';
+import { parse, stringify } from '@fabrykowski/sip-parser';
 
 const messageString =
     'INVITE sip:bob@biloxi.com SIP/2.0\r\n' +
@@ -130,7 +132,7 @@ CSeq: 986759 INVITE
 ## Responses
 SIP responses are very similar to requests; they only differ in the start line. Parsed responses have `statusCode` and `reason` fields:
 ```JavaScript
-import { parse } from './index';
+import { parse } from '@fabrykowski/sip-parser';
 
 const sipResponse =
     'SIP/2.0 200 OK\r\n' +
@@ -217,7 +219,7 @@ Obviously, stringifying the resulting object returns a valid SIP response string
 ## Types
 You can easily import all types, if you want to use them in the definitions of your own functions and variables:
 ```JavaScript
-import { types as SipTypes } from 'sip-parser';
+import { types as SipTypes } from '@fabrykowski/sip-parser';
 
 export function getHeader(message: SipTypes.SIPMessage, headerName: string): SipTypes.Header | undefined {
     return message.headers.find(h => h.fieldName.toLocaleLowerCase() === headerName.toLocaleLowerCase());

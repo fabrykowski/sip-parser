@@ -1,5 +1,5 @@
 {
-    "name": "sip-parser",
+    "name": "@fabrykowski/sip-parser",
     "version": "1.4.4",
     "description": "A simple package for parsing and stringifying SIP messages.",
     "main": "dist/index.js",
@@ -8,24 +8,34 @@
         "lint": "eslint --fix --ext .ts,.js index.ts src/**",
         "lint:nofix": "eslint --ext .ts,.js index.ts src/**",
         "prepare": "npm run lint:nofix && npm test && rimraf dist/ && npm run build",
-        "publish:patch": "npm version patch && git push && npm publish && git push origin --tags",
-        "publish:minor": "npm version minor && git push && npm publish && git push origin --tags",
-        "publish:major": "npm version major && git push && npm publish && git push origin --tags",
+        "publish:patch": "npm version patch && git push && npm publish --access public && git push origin --tags",
+        "publish:minor": "npm version minor && git push && npm publish --access public && git push origin --tags",
+        "publish:major": "npm version major && git push && npm publish --access public && git push origin --tags",
         "test": "jest"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Formup/sip-parser.git"
+        "url": "git+https://github.com/fabrykowski/sip-parser.git"
     },
     "keywords": [
         "sip"
     ],
-    "author": "Formup",
+    "author": {
+        "name": "fabrykowski"
+    },
+    "contributors": [
+        {
+            "name": "Formup"
+        },
+        {
+            "name": "Antti"
+        }
+    ],
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/Formup/sip-parser/issues"
+        "url": "https://github.com/fabrykowski/sip-parser/issues"
     },
-    "homepage": "https://github.com/Formup/sip-parser#readme",
+    "homepage": "https://github.com/fabrykowski/sip-parser#readme",
     "devDependencies": {
         "@types/jest": "^29.0.0",
         "@typescript-eslint/eslint-plugin": "^5.36.0",
