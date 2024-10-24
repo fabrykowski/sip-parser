@@ -4,11 +4,11 @@ describe('parseUri', () => {
     describe('missing protocol part', () => {
         it('should throw an error if the protocol part is missing', () => {
             const malformedUri = 'alice@chicago.com:4330';
-            expect(() => parseUri(malformedUri)).toThrowError('not a valid');
+            expect(() => parseUri(malformedUri)).toThrow('not a valid');
             const malformedUri2 = 'bob@newyork.com';
-            expect(() => parseUri(malformedUri2)).toThrowError('not a valid');
+            expect(() => parseUri(malformedUri2)).toThrow('not a valid');
             const malformedUri3 = 'sip@newyork.com';
-            expect(() => parseUri(malformedUri3)).toThrowError('not a valid');
+            expect(() => parseUri(malformedUri3)).toThrow('not a valid');
         });
     });
     describe('secure SIP', () => {

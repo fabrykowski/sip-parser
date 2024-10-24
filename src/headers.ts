@@ -66,7 +66,7 @@ function matchHeaderLine(headerLine: string) {
     // Returns two groups:
     // 1. Header name
     // 2. All values that come after the colon
-    return headerLine.match(/([A-Za-z-]+):(.+)/);
+    return /([A-Za-z-]+):(.+)/.exec(headerLine);
 }
 
 function splitFieldValueAndParams(headerValue: string): string[] {
@@ -123,7 +123,7 @@ function parseAuthHeaderLine(headerName: string, headerValueString: string) {
 }
 
 function splitAuthFieldValueAndParams(headerValue: string) {
-    return headerValue.match(/([A-Za-z-]+)\s+([\w\s\-,~!<>="@:./]+)/);
+    return /([A-Za-z-]+)\s+([\w\s\-,~!<>="@:./]+)/.exec(headerValue);
 }
 
 export function stringifyHeader(header: Header): string {
@@ -140,8 +140,8 @@ function stringifyAuthHeaderParams(params: NameValuePair[]) {
     const noQuotesValues = ['algorithm', 'stale'];
     const paramStrings = params.map(pair => {
         const quotedParamValue = noQuotesValues.includes(pair.name.toLowerCase()) ?
-            (pair.value || '') :
-            `"${pair.value || ''}"`;
+            (pair.value ?? '') :
+            `"${pair.value ?? ''}"`;
         return `${pair.name}=${quotedParamValue}`;
     });
     return ' ' + paramStrings.join(', ');

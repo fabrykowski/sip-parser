@@ -40,7 +40,7 @@ function isolateHeaderLines(messageString: string): string[] {
     // Headers can be split into multiple lines. If a line starts with whitespace, it's combined to the previous line.
     const combinedLines: string[] = [];
     for (const line of headerLines) {
-        const startWhiteSpace = line.match(/^\s+/);
+        const startWhiteSpace = /^\s+/.exec(line);
         if (startWhiteSpace) {
             if (combinedLines.length === 0)
                 throw new Error('The first header line cannot start with a whitespace: ' + line);
@@ -63,12 +63,12 @@ function isolateContentLines(messageString: string): string[] {
 
 function matchRequestLine(startLine: string) {
     // Matches the method, request URI and SIP version.
-    return startLine.match(/([A-Za-z]+)\s(sips?:(?:[\w.-]+@)?[\w\-.]+(?::\d+)?)\sSIP\/(\d\.\d)/);
+    return /([A-Za-z]+)\s(sips?:(?:[\w.-]+@)?[\w\-.]+(?::\d+)?)\sSIP\/(\d\.\d)/.exec(startLine);
 }
 
 function matchStatusLine(startLine: string) {
     // Matches the version, status code and reason string.
-    return startLine.match(/SIP\/(\d\.\d)\s(\d{3})\s(\w+)/);
+    return /SIP\/(\d\.\d)\s(\d{3})\s(\w+)/.exec(startLine);
 }
 
 function parseRequest(method: string, requestUri: string, headerLines: string[], contentLines: string[]): SIPRequest {

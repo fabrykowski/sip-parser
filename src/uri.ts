@@ -5,8 +5,8 @@ const SipUriRegexp = /sip(?<secure>s?):(?:(?<user>[^@]+)@)?(?<host>[\w.-]+)(?::?
 
 export function parseUri(uriString: string): SipUri {
     // Matches the username, the host and optionally a port.
-    const uriMatches = uriString.match(SipUriRegexp);
-    if (!uriMatches || !uriMatches.groups)
+    const uriMatches = SipUriRegexp.exec(uriString);
+    if (uriMatches?.groups === undefined)
         throw new Error('Given string was not a valid URI: ' + uriString);
 
     const params = parseNameValuePairs(uriMatches.groups.params);

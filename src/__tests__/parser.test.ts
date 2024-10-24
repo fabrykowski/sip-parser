@@ -267,6 +267,6 @@ describe('empty line', () => {
             'Contact: <sip:bob@192.0.2.4>\r\n' +
             'Content-Type: application/sdp\r\n' +
             'Content-Length: 131';
-        expect(() => parse(messageString)).toThrowError('an empty line');
+        expect(() => parse(messageString)).toThrow('an empty line');
     });
 });
